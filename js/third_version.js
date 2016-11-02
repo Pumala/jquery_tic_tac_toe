@@ -13,7 +13,6 @@ $(document).ready(function() {
   // }
 
   function compHuman() {
-    $("td").prop("disabled", true);
     var compTurn = true;
     var counter = 0;
     while (compTurn && !gameOver) {
@@ -23,7 +22,6 @@ $(document).ready(function() {
         setTimeout(function() {
           $($("td")[randomIndex]).text("O");
           checkLogic(true);
-          $("#board").prop("disabled", true);
           if (!gameOver) {
             $("#message p").text("Human's turn...");
           }
@@ -33,7 +31,7 @@ $(document).ready(function() {
     }
     if (!compTurn) {
       $("td").click(function() {
-        if ($(this).text() === "" && !gameOver && counter === 0) {
+        if ($(this).text() === "" && !gameOver && $("#message p").text() === "Human's turn...") {
           $(this).text("X");
           checkLogic(false);
           counter += 1;
